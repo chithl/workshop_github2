@@ -94,19 +94,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Form submission loading state
+    const FORM_TIMEOUT = 3000; // 3 seconds timeout for re-enabling submit buttons
     const forms = document.querySelectorAll('form');
     forms.forEach(form => {
         form.addEventListener('submit', function(e) {
             const submitBtn = this.querySelector('[type="submit"]');
             if (submitBtn && !submitBtn.disabled) {
+                // Store original text before modification
+                if (!submitBtn.hasAttribute('data-original-text')) {
+                    submitBtn.setAttribute('data-original-text', submitBtn.innerHTML);
+                }
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Loading...';
                 
-                // Re-enable after 3 seconds (in case of client-side validation failure)
+                // Re-enable after timeout (in case of client-side validation failure)
                 setTimeout(() => {
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = submitBtn.getAttribute('data-original-text') || 'Submit';
-                }, 3000);
+                    submitBtn.innerHTML = submitBtn.getAttribute('data-original-text');
+                }, FORM_TIMEOUT);
             }
         });
     });

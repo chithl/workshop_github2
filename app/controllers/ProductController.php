@@ -132,6 +132,9 @@ class ProductController {
         require_once 'app/views/products/index.php';
     }
 
+    // Maximum file size for uploads (5MB)
+    private const MAX_FILE_SIZE = 5000000;
+
     /**
      * Upload product image
      * @param array $file
@@ -155,8 +158,8 @@ class ProductController {
             return '';
         }
         
-        // Check file size (5MB max)
-        if ($file['size'] > 5000000) {
+        // Check file size
+        if ($file['size'] > self::MAX_FILE_SIZE) {
             return '';
         }
         
