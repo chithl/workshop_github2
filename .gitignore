@@ -1,0 +1,35 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+error_log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Uploaded files (uncomment if you want to ignore uploads)
+# public/images/products/*
+# !public/images/products/.gitkeep
+
+# Configuration files with sensitive data
+# config/config.php
+
+# Dependencies
+vendor/
+node_modules/
+
+# Cache
+cache/
+*.cache
